@@ -18,7 +18,7 @@ const App = () => {
   if (weather && weather.list) {
     return (
       <NavigationContainer>
-        <Tabs />
+        <Tabs weather={weather} />
       </NavigationContainer>
     );
   }

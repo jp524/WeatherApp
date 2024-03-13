@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/Feather';
 import RowText from '../components/RowText';
 import {weatherType} from '../utilities/weatherType';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({route}) => {
   const {
     wrapper,
     container,
-    temp,
+    tempStyles,
     highLowWrapper,
     highLow,
     bodyWrapper,
@@ -16,23 +16,38 @@ const CurrentWeather = () => {
     message,
   } = styles;
 
+  const {weatherData} = route.params;
+  const {
+    main: {temp, feels_like, temp_max, temp_min},
+    weather,
+  } = weatherData;
+  const weatherCondition = weather[0].main;
+
   return (
-    <SafeAreaView style={wrapper}>
+    <SafeAreaView
+      style={[
+        wrapper,
+        {backgroundColor: weatherType[weatherCondition].backgroundColor},
+      ]}>
       <View style={container}>
-        <Icon name={'sun'} size={100} color={'black'} />
-        <Text style={temp}>6</Text>
-        <Text style={temp}>Feels like 5</Text>
+        <Icon
+          name={weatherType[weatherCondition].icon}
+          size={100}
+          color={'white'}
+        />
+        <Text style={tempStyles}>{temp}</Text>
+        <Text style={tempStyles}>{`Feels like ${feels_like}`}</Text>
         <RowText
-          messageOne={'High: 8'}
-          messageTwo={'Low: 6'}
+          messageOne={`High: ${temp_max}`}
+          messageTwo={`Low: ${temp_min}`}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
       </View>
       <RowText
-        messageOne={"It's sunny"}
-        messageTwo={weatherType.Thunderstorm.message}
+        messageOne={weather[0].description}
+        messageTwo={weatherType[weatherCondition].message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
@@ -51,16 +66,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  temp: {
-    color: 'black',
+  tempStyles: {
+    color: 'white',
     fontSize: 48,
   },
   feels: {
-    color: 'black',
+    color: 'white',
     fontSize: 30,
   },
   highLow: {
-    color: 'black',
+    color: 'white',
     fontSize: 20,
   },
   highLowWrapper: {
@@ -73,11 +88,11 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   description: {
-    color: 'black',
+    color: 'white',
     fontSize: 48,
   },
   message: {
-    color: 'black',
+    color: 'white',
     fontSize: 30,
   },
 });
