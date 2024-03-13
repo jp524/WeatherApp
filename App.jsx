@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, View, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 import Tabs from './src/components/Tabs';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        console.log(position);
+      },
+      error => {
+        console.log(error);
+      },
+    );
+  }, []);
 
   const loadingView = (
     <View style={styles.container}>
