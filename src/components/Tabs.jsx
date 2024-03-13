@@ -51,6 +51,7 @@ const Tabs = ({weather}) => {
             />
           ),
         }}
+        initialParams={{weatherData: weather.list}}
       />
       <Tab.Screen
         name={'City'}
