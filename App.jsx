@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const App = () => {
   return (
     <View style={styles.container}>
-      <City />
+      <CurrentWeather />
     </View>
   );
 };
