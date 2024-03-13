@@ -6,7 +6,7 @@ const CurrentWeather = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
-        <Icon name="sun" size={100} color="black" />
+        <Icon name={'sun'} size={100} color={'black'} />
         <Text style={styles.temp}>6</Text>
         <Text style={styles.temp}>Feels like 5</Text>
         <View style={styles.highLowWrapper}>
