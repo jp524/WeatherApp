@@ -3,6 +3,7 @@ import {ActivityIndicator, View, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import Tabs from './src/components/Tabs';
+import {WEATHER_API_KEY} from '@env';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,8 @@ const App = () => {
       },
     );
   }, []);
+
+  console.log(WEATHER_API_KEY);
 
   const loadingView = (
     <View style={styles.container}>
