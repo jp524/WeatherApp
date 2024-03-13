@@ -7,19 +7,37 @@ import {WEATHER_API_KEY} from '@env';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [weather, setWeather] = useState([]);
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
-        console.log(position);
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
       },
       error => {
         console.log(error);
       },
     );
-  }, []);
+    fetchWeatherData();
+  }, [lat, lon]);
 
-  console.log(WEATHER_API_KEY);
+  const fetchWeatherData = async () => {
+    try {
+      const res = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`,
+      );
+      const data = await res.json();
+      setWeather(data);
+    } catch (error) {
+      setErrorMessage('Could not fetch weather');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const loadingView = (
     <View style={styles.container}>
