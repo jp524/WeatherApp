@@ -65,6 +65,7 @@ const Tabs = ({weather}) => {
             />
           ),
         }}
+        initialParams={{city: weather.city}}
       />
     </Tab.Navigator>
   );
