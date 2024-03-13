@@ -14,7 +14,7 @@ const ListItem = props => {
         <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
         <Text style={date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
       </View>
-      <Text style={temp}>{`${Math.round(min)}°/${Math.round(max)}°`}</Text>
+      <Text style={temp}>{`${Math.floor(min)}°/${Math.round(max)}°`}</Text>
     </View>
   );
 };
