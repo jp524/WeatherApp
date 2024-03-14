@@ -3,7 +3,6 @@ import Geolocation from '@react-native-community/geolocation';
 import {WEATHER_API_KEY} from '@env';
 
 export const useGetWeather = () => {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [weather, setWeather] = useState([]);
   const [lat, setLat] = useState([]);
@@ -18,8 +17,6 @@ export const useGetWeather = () => {
       setWeather(data);
     } catch (err) {
       setError('could not fetch weather');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -38,5 +35,5 @@ export const useGetWeather = () => {
     })();
   }, [lat, lon]);
 
-  return [loading, error, weather];
+  return [error, weather];
 };
