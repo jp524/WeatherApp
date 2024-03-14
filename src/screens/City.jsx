@@ -1,22 +1,15 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-  View,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, Text, StyleSheet, StatusBar, View} from 'react-native';
 import moment from 'moment';
 import IconText from '../components/IconText';
 
 const City = ({route}) => {
+  const [daytime, setDaytime] = useState(true);
   const {city} = route.params;
   const {name, country, population, sunrise, sunset} = city;
 
   const {
     container,
-    imageLayout,
     cityName,
     cityText,
     countryName,
@@ -27,11 +20,18 @@ const City = ({route}) => {
     riseSetText,
   } = styles;
 
+  const backgroundStyle = {
+    backgroundColor: daytime ? 'lightskyblue' : 'midnightblue',
+  };
+
+  useEffect(() => {
+    let currentTime = Date.now();
+    setDaytime(currentTime > sunrise && currentTime < sunset);
+  }, [sunrise, sunset, daytime]);
+
   return (
-    <SafeAreaView style={container}>
-      <ImageBackground
-        source={require('../../assets/city-background.jpg')}
-        style={imageLayout}>
+    <SafeAreaView style={[container, backgroundStyle]}>
+      <View>
         <Text style={[cityName, cityText]}>{name}</Text>
         <Text style={[countryName, cityText]}>{country}</Text>
         <View style={[populationWrapper, rowLayout]}>
@@ -42,21 +42,24 @@ const City = ({route}) => {
             bodyTextStyles={populationText}
           />
         </View>
-        <View style={[riseSetWrapper, rowLayout]}>
-          <IconText
-            iconName={'sunrise'}
-            iconColor={'white'}
-            bodyText={moment(sunrise).format('h:mm:ss a')}
-            bodyTextStyles={riseSetText}
-          />
-          <IconText
-            iconName={'sunset'}
-            iconColor={'white'}
-            bodyText={moment(sunset).format('h:mm:ss a')}
-            bodyTextStyles={riseSetText}
-          />
-        </View>
-      </ImageBackground>
+      </View>
+      <View>
+        <Text />
+      </View>
+      <View style={[riseSetWrapper, rowLayout]}>
+        <IconText
+          iconName={'sunrise'}
+          iconColor={'white'}
+          bodyText={moment(sunrise).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
+        <IconText
+          iconName={'sunset'}
+          iconColor={'white'}
+          bodyText={moment(sunset).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -64,10 +67,8 @@ const City = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  imageLayout: {
-    flex: 1,
+    justifyContent: 'space-around',
+    paddingTop: StatusBar.currentHeight || 0,
   },
   cityName: {
     fontSize: 40,

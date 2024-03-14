@@ -9,10 +9,10 @@ const ListItem = props => {
   const {item, temp, date, dateTextWrapper} = styles;
   return (
     <View style={item}>
-      <Icon name={weatherType[condition].icon} size={50} color={'white'} />
+      <Icon name={weatherType[condition]?.icon} size={50} color={'white'} />
       <View style={dateTextWrapper}>
         <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
-        <Text style={date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
+        <Text style={date}>{moment(dt_txt).format('h a')}</Text>
       </View>
       <Text style={temp}>{`${Math.floor(min)}°/${Math.round(max)}°`}</Text>
     </View>
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderWidth: 5,
-    backgroundColor: 'pink',
+    borderRadius: 8,
+    backgroundColor: 'midnightblue',
   },
   temp: {
     color: 'white',
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
   dateTextWrapper: {
     flexDirection: 'column',
+    width: '20%',
   },
 });
 export default ListItem;

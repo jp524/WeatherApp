@@ -11,18 +11,12 @@ const Tabs = ({weather}) => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#007bff',
         tabBarInactiveTintColor: 'grey',
-        tabBarStyle: {
-          backgroundColor: 'lightblue',
-        },
-        headerStyle: {
-          backgroundColor: 'lightblue',
-        },
         headerTitleStyle: {
           fontWeight: 'bold',
           fontSize: 25,
-          color: 'tomato',
+          color: 'black',
         },
       }}>
       <Tab.Screen
@@ -33,7 +27,7 @@ const Tabs = ({weather}) => {
             <Icon
               name={'droplet'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? '#007bff' : 'grey'}
             />
           ),
         }}
@@ -47,7 +41,7 @@ const Tabs = ({weather}) => {
             <Icon
               name={'clock'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? '#007bff' : 'grey'}
             />
           ),
         }}
@@ -61,7 +55,7 @@ const Tabs = ({weather}) => {
             <Icon
               name={'home'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? '#007bff' : 'grey'}
             />
           ),
         }}
