@@ -6,7 +6,7 @@ import IconText from '../components/IconText';
 const City = ({route}) => {
   const [daytime, setDaytime] = useState(true);
   const {city} = route.params;
-  const {name, country, population, sunrise, sunset} = city;
+  const {name, country, population, sunrise, sunset, timezone} = city;
 
   const {
     container,
@@ -50,13 +50,19 @@ const City = ({route}) => {
         <IconText
           iconName={'sunrise'}
           iconColor={'white'}
-          bodyText={moment(sunrise).format('h:mm:ss a')}
+          bodyText={moment
+            .unix(sunrise)
+            .utcOffset(timezone / 3600)
+            .format('h:mm a')}
           bodyTextStyles={riseSetText}
         />
         <IconText
           iconName={'sunset'}
           iconColor={'white'}
-          bodyText={moment(sunset).format('h:mm:ss a')}
+          bodyText={moment
+            .unix(sunset)
+            .utcOffset(timezone / 3600)
+            .format('h:mm a')}
           bodyTextStyles={riseSetText}
         />
       </View>
