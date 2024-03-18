@@ -8,7 +8,8 @@ describe('ListItem', () => {
   beforeEach(() => {
     render(
       <ListItem
-        dt_txt={'2024-03-14 08:00:00'}
+        dt={1710784800}
+        timezone={-25000}
         min={'5.3'}
         max={'8.3'}
         condition={'Rain'}
@@ -17,11 +18,11 @@ describe('ListItem', () => {
   });
 
   it('displays the day of the week', () => {
-    expect(screen.getByText('Thursday')).toBeVisible();
+    expect(screen.getByText('Monday')).toBeVisible();
   });
 
   it('displays the hour', () => {
-    expect(screen.getByText('8 am')).toBeVisible();
+    expect(screen.getByText('11 am')).toBeVisible();
   });
 
   it('displays the min and max temperatures correctly rounded', () => {

@@ -1,18 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import moment from 'moment';
 import {weatherType} from '../utilities/weatherType';
+import {convertUnixToLocalTime} from '../utilities/convertUnixToLocalTime';
 
 const ListItem = props => {
-  const {dt_txt, min, max, condition} = props;
+  const {dt, timezone, min, max, condition} = props;
   const {item, temp, date, dateTextWrapper} = styles;
   return (
     <View style={item}>
       <Icon name={weatherType[condition]?.icon} size={50} color={'white'} />
       <View style={dateTextWrapper}>
-        <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
-        <Text style={date}>{moment(dt_txt).format('h a')}</Text>
+        <Text style={date}>{convertUnixToLocalTime(dt, timezone, 'dddd')}</Text>
+        <Text style={date}>{convertUnixToLocalTime(dt, timezone, 'h a')}</Text>
       </View>
       <Text style={temp}>{`${Math.floor(min)}°/${Math.round(max)}°`}</Text>
     </View>

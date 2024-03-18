@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, Text, StyleSheet, StatusBar, View} from 'react-native';
-import moment from 'moment';
 import IconText from '../components/IconText';
+import {convertUnixToLocalTime} from '../utilities/convertUnixToLocalTime';
 
 const City = ({route}) => {
   const [daytime, setDaytime] = useState(true);
@@ -50,19 +50,13 @@ const City = ({route}) => {
         <IconText
           iconName={'sunrise'}
           iconColor={'white'}
-          bodyText={moment
-            .unix(sunrise)
-            .utcOffset(timezone / 3600)
-            .format('h:mm a')}
+          bodyText={convertUnixToLocalTime(sunrise, timezone, 'h:mm a')}
           bodyTextStyles={riseSetText}
         />
         <IconText
           iconName={'sunset'}
           iconColor={'white'}
-          bodyText={moment
-            .unix(sunset)
-            .utcOffset(timezone / 3600)
-            .format('h:mm a')}
+          bodyText={convertUnixToLocalTime(sunset, timezone, 'h:mm a')}
           bodyTextStyles={riseSetText}
         />
       </View>

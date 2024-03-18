@@ -41,7 +41,10 @@ const Tabs = ({weather}) => {
         name={'Upcoming'}
         component={UpcomingWeather}
         options={{tabBarIcon: upcomingWeatherTabIcon}}
-        initialParams={{weatherData: weather.list}}
+        initialParams={{
+          weatherData: weather.list,
+          timezone: weather.city.timezone,
+        }}
       />
       <Tab.Screen
         name={'City'}

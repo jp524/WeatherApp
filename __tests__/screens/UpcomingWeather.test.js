@@ -8,7 +8,10 @@ import {weatherData} from '../../__utilities__/weatherData';
 describe('CurrentWeather', () => {
   beforeEach(() => {
     const route = {
-      params: {weatherData: weatherData.list},
+      params: {
+        weatherData: weatherData.list,
+        timezone: weatherData.city.timezone,
+      },
     };
     render(<UpcomingWeather route={route} />);
   });
