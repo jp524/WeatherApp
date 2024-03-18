@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import ListItem from '../src/components/ListItem';
+import ListItem from '../../src/components/ListItem';
 import {it} from '@jest/globals';
 
 describe('ListItem', () => {

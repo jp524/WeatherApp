@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import RowText from '../src/components/RowText';
+import RowText from '../../src/components/RowText';
 import {it} from '@jest/globals';
 
 describe('RowText', () => {

@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import IconText from '../src/components/IconText';
+import IconText from '../../src/components/IconText';
 import {it} from '@jest/globals';
 
 describe('IconText', () => {
